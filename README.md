@@ -1,7 +1,7 @@
-# 2025-ITELEC2-LAB012
-Week 04 - Conditional Statements
+# 2025-ITELEC2-LAB014
+Week 04 - Looping Statements
 
-Laboratory # 12 - Guided Coding Exercise: Simulating a Switch Statement and Ternary Operator in Python
+Laboratory # 14 - Guided Coding Exercise: Nested for Loop to Print a Multiplication Table
 
 ## **Instructions**
 
@@ -77,102 +77,70 @@ Only perform this if this is the first time you will setup your Git Environment
 
 ### **Step 3: Complete the Assignment**
 
-**Laboratory # 12 - Guided Coding Exercise: Simulating a Switch Statement and Ternary Operator in Python**
+**Laboratory # 14 - Guided Coding Exercise: Nested for Loop to Print a Multiplication Table**
 
    **Objective:**
-   - Understand how to simulate a switch statement in Python using a dictionary.
-   - Learn how to use the ternary operator for inline conditional expressions.
-   - Practice dictionary lookups and handling default values.
-   - Reinforce input handling and string manipulation.
+   - Understand the concept of nested loops (a loop within a loop).
+   - Learn how to generate a multiplication table using nested for loops.
+   - Recognize the advantage of looping to automate repetitive tasks.
+   - Practice formatted output using f-strings.
 
    **Desired Output (Example 1):**
    ```bash
-   Enter a day of the week: Monday
-   Today is Monday.
-   It's a Weekday!
-   ```
-   **Desired Output (Example 2):**
-   ```bash
-   Enter a day of the week: saturday
-   Today is Saturday.
-   It's a Weekend!
-   ```
-   **Desired Output (Example 3):**
-   ```bash
-   Enter a day of the week:  tuesday 
-   Today is Tuesday.
-   It's a Weekday!
-   ```
-   **Desired Output (Example 4):**
-   ```bash
-   Enter a day of the week:  Funday
-   Invalid day entered.
-   It's a Weekday!
+      1   2   3   4   5
+      2   4   6   8  10
+      3   6   9  12  15
+      4   8  12  16  20
+      5  10  15  20  25
    ```
       
    **Notable Observations (to be discussed after completing the exercise):**
-   - Python does not have a built-in switch statement like some other languages. Dictionaries provide a clean and efficient way to achieve similar functionality.
-   - The .get() method of a dictionary allows you to retrieve a value associated with a key. Crucially, it also lets you specify a default value that will be returned if the key is not found in the dictionary. This is very useful for handling cases where the user might enter invalid input.
-   - The ternary operator (value_if_true if condition else value_if_false) provides a concise way to write conditional expressions in a single line. It's useful for simple conditions where you want to assign one of two values.
-   - String methods like .strip() and .lower() are essential for normalizing user input, making your code more robust.
+   - The inner loop (j) completes all its iterations for each iteration of the outer loop (i). This is how the multiplication table is generated row by row.
+   - The formatting {product:4} ensures consistent spacing, making the table more readable.
+   - The end="" argument in the print() function is crucial for printing the numbers in the same row.
 
    **Python Best Practices**
-   - Input Normalization: Always normalize user input (e.g., convert to lowercase using .lower() and remove leading/trailing whitespace using .strip()) to handle variations in user input and prevent unexpected behavior.
-   - Dictionary .get() with Default: Use the .get() method with a default value when retrieving values from a dictionary. This is a best practice, especially when dealing with user input, as it provides a clean way to handle cases where the key might not exist.
-   - Readability: Even with concise constructs like the ternary operator, prioritize code readability. If a ternary expression becomes too complex, consider using a regular if...else statement for clarity.
-   - Descriptive Variable Names: Use meaningful variable names (e.g., day_messages, day, message, day_type).
-   - Comments: Add comments to explain your logic, especially when simulating control flow structures like a switch statement.
-   - Test Thoroughly: Test your code with various inputs, including valid days of the week (with different capitalization and spacing) and invalid days, to ensure it handles all cases correctly.
+   - Formatted Output: Use f-strings and format specifiers to control the appearance of your output, making it more readable and professional.
+   - Loop Logic: Keep the logic within each loop as simple and focused as possible. Clearly separate the concerns of the outer and inner loops.
+   - Comments: Add comments to explain the purpose of the loops and any non-obvious code.
+   - Indentation: Consistent and correct indentation is absolutely essential for nested loops. It defines the structure of the code and determines which code belongs to which loop.
+   Test Thoroughly: Test your code to make sure it produces the correct output.
 
    **Step-by-Step Instructions:**
 
    1. Setting up: Open your preferred Python environment or Text Editor, and create a Python Script.
-      - Required Filename: `switch_ternary_operator.py`
+      - Required Filename: `nested_for_loop_multiplication_table.py`
       
-   2.  Create a dictionary to simulate a switch statement:
-      - Create a dictionary named day_messages. The keys of the dictionary should be the days of the week (in lowercase). The values should be the corresponding messages (e.g., "Today is Monday.", "Today is Tuesday.", etc.).
+   2. Outer loop for rows (1 to 5):
+      - Use a for loop with the range() function to iterate from 1 to 5 (inclusive). Use a variable named i to represent the current row number.
 ```python
-day_messages = {
-    "monday": "Today is Monday.",
-    "tuesday": "Today is Tuesday.",
-    "wednesday": "Today is Wednesday.",
-    "thursday": "Today is Thursday.",
-    "friday": "Today is Friday.",
-    "saturday": "Today is Saturday.",
-    "sunday": "Today is Sunday."
-}
+for i in range(1, 6):
 ```
       
-   3.  Get input from the user and normalize it:
-      - Use the input() function to prompt the user to enter a day of the week.
-      - Use .strip() to remove any leading or trailing whitespace from the user's input.
-      - Use .lower() to convert the input to lowercase. This makes the comparison case-insensitive.
-      - Store the normalized input in a variable named day.
+   3.  Inner loop for columns (1 to 5):
+      - Inside the outer loop, use another for loop (nested loop) with the range() function to iterate from 1 to 5 (inclusive). Use a variable named j to represent the current column number.
 ```python
-day = input("Enter a day of the week: ").strip().lower()
+    for j in range(1, 6):  # Indent this loop!
 ```
 
-   4. Retrieve the message using the dictionary with a default:
-      - Use the .get() method of the day_messages dictionary to retrieve the message associated with the day entered by the user.
-      - Provide a default value to the .get() method. This default value will be returned if the day is not found as a key in the dictionary. Use something like "Invalid day entered." as the default.
-      - Store the returned message in a variable named message.
+   4. Calculate the product:
+      - Inside the inner loop, calculate the product of i and j and store it in a variable named product.
 ```python
-message = day_messages.get(day, "Invalid day entered.")
+        product = i * j  # Indent this line!
 ```
 
-   5. Use the ternary operator to determine weekend vs. weekday:
-      - Use the ternary operator to determine if the day is a weekend (Saturday or Sunday) or a weekday.
-      - The condition should check if day is present in the tuple ("saturday", "sunday").
-      - If the condition is true, assign the string "Weekend" to the variable day_type. Otherwise, assign "Weekday".
+   5. Print the product with formatting:
+      - Inside the inner loop, use the print() function with an f-string to display the product.
+      - Use the format specifier {product:4} within the f-string to format the number in a field of width 4. This will create consistent spacing in the table.
+      - Use the end="" argument in the print() function to prevent a newline character from being printed after each number. This allows you to print the numbers in the same row.
 ```python
-day_type = "Weekend" if day in ("saturday", "sunday") else "Weekday"
+        print(f"{product:4}", end="")  # Indent this line!
 ```
 
-   6. Use the ternary operator to determine weekend vs. weekday:
-      - Use the print() function to display the message (from the dictionary lookup) and the day_type (determined by the ternary operator).
+   6. New line after each row:
+      - After the inner loop (but still inside the outer loop), use the print() function without any arguments. This will print a newline character, moving the cursor to the next line to start the next row of the table.
 ```python
-print(message)
-print("It's a", day_type + "!")
+    print() # Indent this line!
 ```
 
    7. Complete Code: Combine the steps above to form the complete program.
@@ -180,7 +148,7 @@ print("It's a", day_type + "!")
    9. Observe the output: Test the program with different days of the week (including variations in capitalization and spacing) and invalid day names.
 
    **Conclusion**
-   This exercise demonstrated two important Python techniques: simulating a switch statement using dictionaries and using the ternary operator for concise conditional expressions. You learned how to use dictionary lookups with default values and how to normalize user input for more robust code.  These techniques are valuable tools for writing cleaner, more efficient, and easier-to-read Python code.
+   This exercise demonstrated how to use nested for loops to create structured and repetitive output, specifically a multiplication table.  You learned how the inner loop completes all its iterations for each iteration of the outer loop.  You also practiced using f-strings for formatted output.  Nested loops are a powerful tool for handling multi-dimensional tasks and are essential for many programming applications.
 
 ### **Step 4: Push Changes to GitHub**
 Once you've completed your changes, follow these steps to upload your work to your GitHub repository.
@@ -204,7 +172,7 @@ git add .
    Write a meaningful commit message:
    
 ```bash
-git commit -m "Submitting Python Week 04 - Laboratory # 12"
+git commit -m "Submitting Python Week 04 - Laboratory # 14"
 ```
    
 4. Push your changes to GitHub:
