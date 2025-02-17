@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Run the Python program and test all input/output pairs in the tests folder
-python_script="switch_ternary_operator.py"
+python_script="nested_for_loop_multiplication_table.py"
 
 declare -A results
 
